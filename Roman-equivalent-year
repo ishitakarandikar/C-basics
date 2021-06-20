@@ -1,0 +1,54 @@
+Write a general-purpose function to convert any given year into its roman equivalent.
+Use these roman equivalents for decimal numbers:
+1-I, 5-V, 10-X, 50-L, 100-C, 500-D, 1000-M.
+
+#include<stdio.h>
+void roman(int year);
+int main()
+{
+
+    int year;
+    printf("Enter year: ");
+    scanf("%d", &year);
+    roman(year);
+
+}
+
+roman(int year)
+{
+    if(year>=1000)
+    {
+        printf("m");
+        roman(year-1000);
+    }
+    else if(year>=500)
+    {
+        printf("d");
+        roman(year-500);
+    }
+    else if(year>=100)
+    {
+        printf("c");
+        roman(year-100);
+    }
+    else if(year>=50)
+    {
+        printf("l");
+        roman(year-50);
+    }
+    else if(year>=10)
+    {
+        printf("x");
+        roman(year-10);
+    }
+    else if(year>=5)
+    {
+        printf("v");
+        roman(year-5);
+    }
+    else if(year>=1)
+    {
+        printf("i");
+        roman(year-1);
+    }
+}
