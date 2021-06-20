@@ -1,0 +1,54 @@
+In digital world colors are specified in Red-Green-Blue (RGB) format, with values of R, G, B varying on an integer scale from 0 to 255. 
+In print publishing the colors are mentioned in Cyan-Magenta-Yellow-Black (CMYK) format, with values of C, M, Y, and K varying on a real scale from 0.0 to 1.0. 
+Write a program that converts RGB color to CMYK color as per the following formulae: 
+White = Max(Red/255,Greren/255,Blue/255)
+Cyan= ( (White-Red/255)/White )
+Magenta = ( (White-Green/255)/White )
+Blue = ( (White-Blue/255)/White )
+Black=1-White
+Note that of the RGB values are all 0, then the CMY values are all 0 and the K value is 1.
+
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    float r, g, b, rf, gf, bf, max, w, c, y, m , k; //k stands for black
+
+    printf("Enter the value of Red(0 to 255): ");
+    scanf("%f", &r);
+
+    printf("Enter the value of Green(0 to 255): ");
+    scanf("%f", &g);
+
+    printf("Enter the value of Blue(0 to 255): ");
+    scanf("%f", &b);
+
+    rf = r/255;
+    gf = g/255;
+    bf = b/255;
+
+    printf("Red: %f\nGreen: %f\nBlue: %f\n", rf, gf, bf);
+
+    //find maximum amoung all of them
+
+    max = rf;
+    if (max<gf)
+        max = gf;
+    if (max<bf)
+        max = bf;
+
+    //w stands for white
+    w = max;
+    printf("White: %f\n\n", w);
+    c = (w-rf)/w;
+    m = (w-gf)/w;
+    y = (w-bf)/w;
+
+    k = 1- w;
+
+    printf("The value of Cyan: %f\n", c);
+    printf("The value of Magenta: %f\n", m);
+    printf("The value of Yellow: %f\n", y);
+    printf("The value of Black: %f\n", k);
+
+}
