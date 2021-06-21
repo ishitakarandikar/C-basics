@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<conio.h>
+#include"interest.h"      /* inclusion of custom header file */
+
+void main() {
+
+int p,r,t,a;
+float si;
+
+clrscr();
+
+printf("enter the principle:  ");
+scanf("%d",&p);
+
+printf("\n\nenter the rate:  ");
+scanf("%d",&r);
+
+printf("\n\nenter the time:  ");
+scanf("%d",&t);
+
+si=INTEREST(p,r,t);
+
+a=AMOUNT(p,si);
+
+printf("\n\n\n\n\t\tsimple interest = %f\n\n\t\tamount = %d",si,a);
+
+getch();
+}
