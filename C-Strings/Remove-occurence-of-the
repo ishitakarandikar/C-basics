@@ -1,0 +1,24 @@
+C program that will read a line and delete from it all occurrences of the word ‘the’.
+
+
+#include <stdio.h>
+void main()
+{
+char sent[]="The time when the night comes is when the sun sets in the west";
+
+int i;
+
+for(i=0;sent[i]!=0;i++)
+{
+if(sent[i]==116&&sent[i+1]==104&&sent[i+2]==101&&sent[i+3]==32)
+{
+for(;sent[i+4]!=0;i++)
+sent[i]=sent[i+4];
+
+sent[i]='\0';
+i=-1;
+}
+}
+
+printf("\n%s",sent);
+}
