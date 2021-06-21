@@ -1,0 +1,46 @@
+Area of a triangle can be computed by the sine law when 2 sides of the triangle and the angle between them are known.
+
+Area = (1 / 2 ) ab sin ( angle )
+
+Given the following 6 triangular pieces of land, write a
+program to find their area and determine which is largest,
+
+Plot No.     a        b     angle
+   1        137.4   80.9    0.78
+   2        155.2   92.62   0.89
+   3        149.3   97.93   1.35
+   4        160.0   100.25  9.00
+   5        155.6   68.95   1.25
+   6        149.7   120.0   1.75
+   
+   
+   #include<stdio.h>
+#include<math.h>
+
+int main(){
+float d[6][4]={1 , 137.4 , 80.9 , 0.78,
+                  2 , 155.2 , 92.62 , 0.89,
+                  3 , 149.3 , 97.93 , 1.35,
+                  4 , 160 , 100.25 , 9,
+                  5 , 155.6 , 68.95 , 1.25,
+                  6 , 149.7 , 120 , 1.75},area,b=1,pn=0,pp;
+int i,j,k;
+
+
+
+
+printf(" Plot No.\t    'A'\t\t  'B'\t\t  Angle\t\t Area\n\n");
+for(i=0;i<6;i++)
+{pn=i+1;
+
+    area=((1/2.0)*d[i][1]*d[i][2]*sin(d[i][3]));
+    printf("   %.f   \t\t   %.2f\t %.2f\t\t  %.2f \t\t%.2f\n",pn,d[i][1],d[i][2],d[i][3],area);
+   if(area>b){b=area,pp=pn;}
+}
+
+
+printf("\n\n\t\t Bigger plot no %.f     area %.4f\n\n",pp,b);
+
+
+return 0;
+}
