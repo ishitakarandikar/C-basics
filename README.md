@@ -15,5 +15,5 @@ These programs are not very sophisticated as these are beginners friendly and ha
 
 ## List of programs
 
-- [24-hours-of-the-day](docs/24-hours-of-the-day.md)
+- [24 hours of the day](/24-hours-of-the-day.md)
 
