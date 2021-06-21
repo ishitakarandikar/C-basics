@@ -1,0 +1,28 @@
+C Program to pick up the largest number from any 5 row by 5 column matrix.
+
+#include<stdio.h>
+int main()
+{
+	int lnum[5][5], i, j, lnsf;
+	for (i = 0; i <= 4; i++)
+	{
+		printf("\n");
+		for (j = 0; j <= 4; j++)
+		{
+			printf("Enter the number : ");
+			scanf("%d", &lnum[i][j]);
+		}
+	}
+	for (i = 0; i <= 4; i++)
+	{
+		printf("\n");
+		for (j = 0; j <= 4; j++)
+		{
+			if (lnum[i][j]>lnum[i][j - 1])
+				lnsf = lnum[i][j];
+			lnum[i][j] = lnsf;
+		}
+	}
+	printf("\nThe largest number is :  %d", lnsf);
+	return 0;
+}
