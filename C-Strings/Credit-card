@@ -1,0 +1,43 @@
+A Credit Card number is usually a 16-digit number. A valid Credit Card number would satisfy a rule explained below with the help of a dummy Credit Card number - 
+4567 1234 5678 9129.
+Start with the rightmost - 1 digit and multiply every other digit by 2.
+4 5 6 7  1 2 3 4  5 6 7 8  9 1 2 9
+8 12     2  6     10  14   18  4
+Then subtracct 9 from any number larger than 10.
+Thus we get:
+8 3 2 6 1 5 9 4
+Add them all up to get 38.
+Add all the other digits to get 42.
+Sum of 38 and 2 is 80. Since 80 is divisible by 10, the credit card number is valid.
+Write a program that recieves a Credit card number and checks using the above rule whether the Credit card number is valid.
+
+
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+	char num[20];
+	int i, sum = 0;
+	printf("\nEnter the 16 digit credit card number : ");
+	scanf("%s", num);
+
+	for (i = 0; i <= 15; i++)//Traversing all numbers
+	{
+		num[i] -= 48;//converting each character in numeral
+		if ((i % 2))//if the number is on right so it will directly get summed
+			sum = sum + num[i];
+		else//if number is on left, so it will first get doubled
+		{
+			num[i] *= 2;
+			if (num[i] >= 10)//if number is greater then or equal to 10 so it will subtracted from 9
+				num[i] -= 9;
+			sum = sum + num[i];	//summing number
+		}
+	}
+	if (!(sum % 10))//if sum is divisble by 10 so number is valid
+		printf("\nNumber is valid.");
+	else
+		printf("\nNumber is not valid.");
+	_getch();
+	return 0;
+}
