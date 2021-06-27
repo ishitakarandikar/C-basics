@@ -1,0 +1,44 @@
+C program to append the contents of one file at the end of another.
+
+
+NOTE: Make two file as "FILE1.TXT" and "FILE2.TXT" in bin directory and then run the program. The contents of FILE1.TXT will be appended to FILE2.TXT.
+
+
+#include<stdio.h>
+#include<conio.h>
+void main() {
+
+FILE *f1,*f2;
+char ch;
+
+clrscr();
+
+f1=fopen("FILE1.TXT","r");    /* file to append */
+f2=fopen("FILE2.TXT","a+");   /* file to be appended */
+
+if(f1==NULL || f2==NULL) {
+printf("\ncannot open one of files!");
+
+exit();
+}
+
+while(1) {
+
+ch=fgetc(f1);
+
+if(ch==EOF) {
+break;
+}
+
+fputc(ch,f2);
+
+}
+
+fclose(f1);
+fclose(f2);
+
+printf("\ntask completed successfully!");
+
+getch();
+
+}
