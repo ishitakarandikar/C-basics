@@ -1,0 +1,218 @@
+Suppose a file contains student’s records with each record containing name and age of a student. Write a program to read these records and display them in sorted order by name.
+
+
+#include<stdio.h>
+#include<conio.h>
+#define N 100
+struct student {
+  char name[30];
+  int age;
+  };
+
+void main() {
+
+struct student std;
+struct student s[N];  /* size of array of structure defined globally for
+    convenience */
+
+FILE *fp;
+int flag=0,ch,i=0,count=0;
+long recsize;
+char another='y';
+void srt_print();   /* funtion to sort and print */
+
+clrscr();
+
+recsize=sizeof(std);
+
+fp=fopen("STUDENT.DAT","rb+");
+if(fp==NULL) {
+exit();
+}
+
+while(1) {
+
+clrscr();
+
+printf("\t\t\tStudent database\n");
+printf("\t\t\t****************\n\n\n");
+printf("\t\t\n1: Add student data\n");
+printf("\t\t\n2: List student data\n");
+printf("\t\t\n0: Exit");
+
+gotoxy(2,24);
+printf("Your choice: ");
+scanf("%d",&ch);
+
+switch(ch) {
+
+case 1:
+
+clrscr();
+
+while(another=='y' || another=='Y') {
+
+clrscr();
+
+printf("\t\tAdd student data\n");
+printf("\t\t****************\n\n");
+printf("\nEnter student name: ");
+scanf("%s",&std.name);
+printf("\n\naEnter student age: ");
+scanf("%d",&std.age);
+
+fseek(fp,0,SEEK_END);
+fwrite(&std,recsize,1,fp);
+
+gotoxy(2,24);
+printf("Add another information(Y/N): ");
+fflush(stdin);
+another=getche();
+
+}
+break;
+
+case 2:
+
+clrscr();
+
+printf("\t\tList student data\n");
+printf("\t\t*****************\n\n");
+rewind(fp);
+while(fread(&std,recsize,1,fp)==1) {
+s[i]=std;
+flag=1;
+i++;
+count++;
+}
+
+srt_print(&s,count);       /* function to print names */
+
+if(flag==0) {
+
+printf("\n\n\nNo data found!\n");
+
+}
+printf("\n\n\npress any key to return...");
+getch();
+
+break;
+
+case 0:
+
+fclose(fp);
+exit();
+
+default:
+
+printf("wrong input!\n");
+exit();
+
+   }
+
+ }
+
+}
+/******** main ends ************/
+
+
+/****  sorting and printing function ****/
+void srt_print(struct student *ss, int n) {
+
+struct student temp;
+int i,j;
+
+
+for(i=0;i<=n;i++) {
+
+for(j=i+1;j<n;j++) {
+
+
+/* checking first alphabets of both names */
+
+
+if(ss[i].name[0] > ss[j].name[0]) {
+
+temp=ss[i];
+ss[i]=ss[j];
+ss[j]=temp;
+}
+
+
+/* if first alphabets are same */
+
+
+else if(ss[i].name[0]==ss[j].name[0] && ss[i].name[1] > ss[j].name[1]) {
+
+temp=ss[i];
+ss[i]=ss[j];
+ss[j]=temp;
+
+}
+
+
+/* if first 2 alphabets are same */
+
+
+else if(ss[i].name[0]==ss[j].name[0] && ss[i].name[1]==ss[j].name[1]) {
+
+if(ss[i].name[2] > ss[j].name[2]) {
+
+temp=ss[i];
+ss[i]=ss[j];
+ss[j]=temp;
+}
+}
+
+
+/* if first 3 alphabets are same */
+
+
+else if(ss[i].name[0]==ss[j].name[0] && ss[i].name[1]==ss[j].name[1]) {
+
+if(ss[i].name[2]==ss[i].name[2]) {
+
+if(ss[i].name[3] > ss[j].name[3]) {
+
+temp=ss[i];
+ss[i]=ss[j];
+ss[j]=ss[i];
+}
+}
+}
+
+
+/* if first four 4 alphabets are same */
+
+
+else if(ss[i].name[0]==ss[j].name[0] && ss[i].name[1]==ss[j].name[1]) {
+
+if(ss[i].name[2]==ss[j].name[2] && ss[i].name[2]==ss[j].name[2]) {
+
+if(ss[i].name[3]==ss[j].name[3]) {
+
+if(ss[i].name[4] > ss[j].name[4]) {
+
+temp=ss[i];
+ss[i]=ss[j];
+ss[j]=ss[i];
+
+    }
+   }
+  }
+ }
+
+ }
+}
+
+
+/* printing sorted list */
+
+
+for(i=0;i<n;i++) {
+
+printf("\n%10s\t\t%2d\n",ss[i].name,ss[i].age);
+
+ }
+
+}
