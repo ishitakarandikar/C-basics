@@ -1,0 +1,55 @@
+Write a program to copy one file to another. While doing so replace all lowercase characters to their equivalent uppercase characters.
+
+
+NOTE: Make a file as "FILE.TXT" in bin directory and write/paste some text in it. then run the program and you will receive another file as "RESULT.TXT" with uppercase letters.
+
+
+#include<stdio.h>
+#include<conio.h>
+
+void main() {
+
+FILE *fr,*fw;
+char a[1000];
+char ch,upr;
+clrscr();
+
+fr=fopen("SOURCE.TXT","r");
+
+if(fr==NULL) {
+printf("cannot open source file!\n");
+
+}
+
+fw=fopen("RESULT.TXT","w");
+
+if(fw==NULL) {
+printf("cannot open target file!\n");
+
+}
+
+while(1) {
+
+ch=fgetc(fr);
+
+if(ch==EOF)
+break;
+
+else {
+
+if(ch>=97 && ch<=122) {
+
+ch=ch-32;
+
+}
+
+fputc(ch,fw);
+}
+
+}
+fclose(fr);
+fclose(fw);
+
+printf("Task completed!");
+getch();
+}
